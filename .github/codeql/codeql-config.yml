@@ -1,0 +1,32 @@
+name: "Custom CodeQL Configuration"
+
+queries:
+  - uses: security-and-quality
+  - uses: security-extended
+  
+  # JavaScript/TypeScript specific queries
+  - uses: ./javascript/ql/src/Security/CWE-079  # XSS
+  - uses: ./javascript/ql/src/Security/CWE-200  # Information Exposure
+  - uses: ./javascript/ql/src/Security/CWE-400  # DoS
+  
+  # React-specific queries
+  - uses: ./javascript/ql/src/React
+  - uses: ./javascript/ql/src/experimental/Security/CWE-079/XSS.ql  # React XSS
+  
+  # Node.js specific queries
+  - uses: ./javascript/ql/src/NodeJS
+  - uses: ./javascript/ql/src/Security/CWE-918  # SSRF
+  
+paths:
+  - app
+  - components
+  - contexts
+  - hooks
+  - lib
+  - services
+  
+paths-ignore:
+  - node_modules
+  - .next
+  - '**/*.test.ts'
+  - '**/*.test.tsx' 
